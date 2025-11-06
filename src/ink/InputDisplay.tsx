@@ -3,17 +3,18 @@ import { Text } from 'ink';
 
 interface InputDisplayProps {
   currentInput: string;
-  inputMode: boolean;
 }
 
-const InputDisplay: React.FC<InputDisplayProps> = memo(({ currentInput, inputMode }) => {
+const InputDisplay: React.FC<InputDisplayProps> = memo(({ currentInput }) => {
   return (
     <>
       <Text color="green">&gt; </Text>
       <Text>{currentInput}</Text>
-      {inputMode && <Text backgroundColor="white"> </Text>}
+      <Text backgroundColor="white"> </Text>
     </>
   );
+}, (prevProps, nextProps) => {
+  return prevProps.currentInput === nextProps.currentInput;
 });
 
 InputDisplay.displayName = 'InputDisplay';

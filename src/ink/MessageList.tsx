@@ -20,6 +20,13 @@ const MessageList: React.FC<MessageListProps> = memo(({ messages }) => {
       ))}
     </Box>
   );
+}, (prevProps, nextProps) => {
+  if (prevProps.messages.length !== nextProps.messages.length) return false;
+  return prevProps.messages.every((msg, index) => 
+    msg.id === nextProps.messages[index].id &&
+    msg.content === nextProps.messages[index].content &&
+    msg.role === nextProps.messages[index].role
+  );
 });
 
 MessageList.displayName = 'MessageList';

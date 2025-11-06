@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Box, useInput } from 'ink';
 import MessageList from './MessageList.tsx';
 import InputSection from './InputSection.tsx';
@@ -53,7 +53,11 @@ const App: React.FC = () => {
   ]);
 
   const [currentInput, setCurrentInput] = useState('');
-  const [inputMode, setInputMode] = useState(false);
+
+  const inputSectionProps = useMemo(() => ({
+    currentInput,
+    rawModeSupported: true
+  }), [currentInput]);
 
   const handleSubmit = useCallback(() => {
     if (currentInput.trim()) {
@@ -71,33 +75,24 @@ const App: React.FC = () => {
       
       setMessages(prev => [...prev, userMessage, agentMessage]);
       setCurrentInput('');
-      setInputMode(false);
     }
   }, [currentInput]);
 
   useInput((input, key) => {
-    if (key.return && inputMode) {
+    if (key.return) {
       handleSubmit();
       return;
     }
     
     if (key.escape) {
-      setInputMode(false);
       setCurrentInput('');
       return;
     }
     
-    if (!inputMode && input === 'i') {
-      setInputMode(true);
-      return;
-    }
-    
-    if (inputMode) {
-      if (key.backspace || key.delete) {
-        setCurrentInput(prev => prev.slice(0, -1));
-      } else if (input && !key.ctrl && !key.meta) {
-        setCurrentInput(prev => prev + input);
-      }
+    if (key.backspace || key.delete) {
+      setCurrentInput(prev => prev.slice(0, -1));
+    } else if (input && !key.ctrl && !key.meta) {
+      setCurrentInput(prev => prev + input);
     }
   });
 
@@ -105,11 +100,7 @@ const App: React.FC = () => {
   return (
     <Box flexDirection="column">
       <MessageList messages={messages} />
-      <InputSection 
-        currentInput={currentInput}
-        inputMode={inputMode}
-        rawModeSupported={true}
-      />
+      <InputSection {...inputSectionProps} />
     </Box>
   );
 };
