@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import { Box, Text } from 'ink';
 
 interface Message {
+  id: string;
   content: string;
   role: 'user' | 'agent';
 }

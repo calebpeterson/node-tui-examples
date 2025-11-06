@@ -1,8 +1,10 @@
 import React, { useState, useCallback } from 'react';
-import { Box, Text, useInput, useStdout } from 'ink';
-import MessageDisplay from './MessageDisplay.tsx';
+import { Box, useInput, useStdout } from 'ink';
+import MessageList from './MessageList.tsx';
+import InputSection from './InputSection.tsx';
 
 interface Message {
+  id: string;
   content: string;
   role: 'user' | 'agent';
 }
@@ -10,35 +12,42 @@ interface Message {
 const App: React.FC = () => {
   const { stdout } = useStdout();
   const [messages, setMessages] = useState<Message[]>([
-    { content: "Hello! How can I help you today?", role: "agent" },
-    { content: "I'd like to learn about React", role: "user" },
+    { id: '1', content: "Hello! How can I help you today?", role: "agent" },
+    { id: '2', content: "I'd like to learn about React", role: "user" },
     {
+      id: '3',
       content: "Great! React is a JavaScript library for building user interfaces. What specifically would you like to know?",
       role: "agent",
     },
-    { content: "How do I create a component?", role: "user" },
+    { id: '4', content: "How do I create a component?", role: "user" },
     {
+      id: '5',
       content: "You can create a React component by writing a function that returns JSX. For example: function MyComponent() { return <div>Hello!</div>; }",
       role: "agent",
     },
     {
+      id: '6',
       content: "What about props? How do I pass data to components?",
       role: "user",
     },
     {
+      id: '7',
       content: "Props are arguments passed to React components. You can pass them like HTML attributes: <MyComponent name='John' age={25} />. Then access them in your component: function MyComponent(props) { return <div>Hello {props.name}, you are {props.age} years old!</div>; }",
       role: "agent",
     },
     {
+      id: '8',
       content: "Can you show me how to use state in a component?",
       role: "user",
     },
     {
+      id: '9',
       content: "Sure! You can use the useState hook for state management. Import it first: import { useState } from 'react'. Then in your component: const [count, setCount] = useState(0). Now you have a count state variable and setCount function to update it.",
       role: "agent",
     },
-    { content: "How do I handle events like button clicks?", role: "user" },
+    { id: '10', content: "How do I handle events like button clicks?", role: "user" },
     {
+      id: '11',
       content: "You can handle events by passing event handler functions to JSX elements. For example: <button onClick={() => setCount(count + 1)}>Click me</button>. The onClick prop receives a function that runs when the button is clicked.",
       role: "agent",
     },
@@ -49,8 +58,17 @@ const App: React.FC = () => {
 
   const handleSubmit = useCallback(() => {
     if (currentInput.trim()) {
-      const userMessage: Message = { content: currentInput.trim(), role: 'user' };
-      const agentMessage: Message = { content: currentInput.trim(), role: 'agent' };
+      const timestamp = Date.now();
+      const userMessage: Message = { 
+        id: `${timestamp}-user`, 
+        content: currentInput.trim(), 
+        role: 'user' 
+      };
+      const agentMessage: Message = { 
+        id: `${timestamp}-agent`, 
+        content: currentInput.trim(), 
+        role: 'agent' 
+      };
       
       setMessages(prev => [...prev, userMessage, agentMessage]);
       setCurrentInput('');
@@ -88,33 +106,12 @@ const App: React.FC = () => {
 
   return (
     <Box flexDirection="column" height={stdout.rows} width={stdout.columns}>
-      {/* Messages area */}
-      <Box flexDirection="column" flexGrow={1} paddingX={1} paddingY={1}>
-        {visibleMessages.map((msg, index) => (
-          <MessageDisplay key={index} message={msg} />
-        ))}
-      </Box>
-      
-      {/* Input area */}
-      <Box
-        borderStyle="round"
-        borderColor="gray"
-        paddingX={1}
-        paddingY={0}
-        marginX={1}
-        marginBottom={1}
-      >
-        <Box>
-          <Text color="green">&gt; </Text>
-          <Text>{currentInput}</Text>
-          {inputMode && <Text backgroundColor="white"> </Text>}
-        </Box>
-        <Box marginTop={1}>
-          <Text dimColor>
-            {inputMode ? 'Press Enter to send, Escape to cancel' : "Press 'i' to input message"}
-          </Text>
-        </Box>
-      </Box>
+      <MessageList messages={visibleMessages} />
+      <InputSection 
+        currentInput={currentInput}
+        inputMode={inputMode}
+        rawModeSupported={true}
+      />
     </Box>
   );
 };
