@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { Box, useInput } from 'ink';
+import React, { useState, useCallback } from 'react';
+import { Box } from 'ink';
 import MessageList from './MessageList.tsx';
 import InputSection from './InputSection.tsx';
 
@@ -52,55 +52,27 @@ const App: React.FC = () => {
     },
   ]);
 
-  const [currentInput, setCurrentInput] = useState('');
-
-  const inputSectionProps = useMemo(() => ({
-    currentInput,
-    rawModeSupported: true
-  }), [currentInput]);
-
-  const handleSubmit = useCallback(() => {
-    if (currentInput.trim()) {
-      const timestamp = Date.now();
-      const userMessage: Message = { 
-        id: `${timestamp}-user`, 
-        content: currentInput.trim(), 
-        role: 'user' 
-      };
-      const agentMessage: Message = { 
-        id: `${timestamp}-agent`, 
-        content: currentInput.trim(), 
-        role: 'agent' 
-      };
-      
-      setMessages(prev => [...prev, userMessage, agentMessage]);
-      setCurrentInput('');
-    }
-  }, [currentInput]);
-
-  useInput((input, key) => {
-    if (key.return) {
-      handleSubmit();
-      return;
-    }
+  const handleSubmit = useCallback((message: string) => {
+    const timestamp = Date.now();
+    const userMessage: Message = { 
+      id: `${timestamp}-user`, 
+      content: message, 
+      role: 'user' 
+    };
+    const agentMessage: Message = { 
+      id: `${timestamp}-agent`, 
+      content: message, 
+      role: 'agent' 
+    };
     
-    if (key.escape) {
-      setCurrentInput('');
-      return;
-    }
-    
-    if (key.backspace || key.delete) {
-      setCurrentInput(prev => prev.slice(0, -1));
-    } else if (input && !key.ctrl && !key.meta) {
-      setCurrentInput(prev => prev + input);
-    }
-  });
+    setMessages(prev => [...prev, userMessage, agentMessage]);
+  }, []);
 
 
   return (
     <Box flexDirection="column">
       <MessageList messages={messages} />
-      <InputSection {...inputSectionProps} />
+      <InputSection onSubmit={handleSubmit} rawModeSupported={true} />
     </Box>
   );
 };

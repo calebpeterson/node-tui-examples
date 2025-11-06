@@ -1,11 +1,11 @@
-import React, { memo } from 'react';
-import { Box } from 'ink';
-import MessageDisplay from './MessageDisplay.tsx';
+import React, { memo } from "react";
+import { Box } from "ink";
+import MessageDisplay from "./MessageDisplay.tsx";
 
 interface Message {
   id: string;
   content: string;
-  role: 'user' | 'agent';
+  role: "user" | "agent";
 }
 
 interface MessageListProps {
@@ -20,15 +20,8 @@ const MessageList: React.FC<MessageListProps> = memo(({ messages }) => {
       ))}
     </Box>
   );
-}, (prevProps, nextProps) => {
-  if (prevProps.messages.length !== nextProps.messages.length) return false;
-  return prevProps.messages.every((msg, index) => 
-    msg.id === nextProps.messages[index].id &&
-    msg.content === nextProps.messages[index].content &&
-    msg.role === nextProps.messages[index].role
-  );
 });
 
-MessageList.displayName = 'MessageList';
+MessageList.displayName = "MessageList";
 
 export default MessageList;
