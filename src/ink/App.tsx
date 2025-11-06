@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { Box, useInput, useStdout } from 'ink';
 import MessageList from './MessageList.tsx';
 import InputSection from './InputSection.tsx';
@@ -102,7 +102,10 @@ const App: React.FC = () => {
     }
   });
 
-  const visibleMessages = messages.slice(-Math.max(1, stdout.rows - 8));
+  const visibleMessages = useMemo(() => 
+    messages.slice(-Math.max(1, stdout.rows - 8)), 
+    [messages, stdout.rows]
+  );
 
   return (
     <Box flexDirection="column" height={stdout.rows} width={stdout.columns}>

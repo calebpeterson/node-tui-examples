@@ -28,6 +28,10 @@ const MessageDisplay: React.FC<{ message: Message }> = memo(({ message }) => {
       </Box>
     </Box>
   );
+}, (prevProps, nextProps) => {
+  return prevProps.message.id === nextProps.message.id &&
+         prevProps.message.content === nextProps.message.content &&
+         prevProps.message.role === nextProps.message.role;
 });
 
 MessageDisplay.displayName = 'MessageDisplay';

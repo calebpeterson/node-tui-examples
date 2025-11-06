@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { Box, Text } from 'ink';
+import InputDisplay from './InputDisplay.tsx';
 
 interface InputSectionProps {
   currentInput: string;
@@ -22,9 +23,7 @@ const InputSection: React.FC<InputSectionProps> = memo(({
       marginBottom={1}
     >
       <Box>
-        <Text color="green">&gt; </Text>
-        <Text>{currentInput}</Text>
-        {inputMode && <Text backgroundColor="white"> </Text>}
+        <InputDisplay currentInput={currentInput} inputMode={inputMode} />
       </Box>
       <Box marginTop={1}>
         <Text dimColor>
@@ -38,6 +37,10 @@ const InputSection: React.FC<InputSectionProps> = memo(({
       </Box>
     </Box>
   );
+}, (prevProps, nextProps) => {
+  return prevProps.currentInput === nextProps.currentInput &&
+         prevProps.inputMode === nextProps.inputMode &&
+         prevProps.rawModeSupported === nextProps.rawModeSupported;
 });
 
 InputSection.displayName = 'InputSection';
