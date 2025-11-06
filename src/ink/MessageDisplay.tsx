@@ -1,14 +1,14 @@
 import React, { memo } from 'react';
 import { Box, Text } from 'ink';
 
-interface Message {
+interface MessageDisplayProps {
   id: string;
   content: string;
   role: 'user' | 'agent';
 }
 
-const MessageDisplay: React.FC<{ message: Message }> = memo(({ message }) => {
-  const isUser = message.role === 'user';
+const MessageDisplay: React.FC<MessageDisplayProps> = memo(({ id, content, role }) => {
+  const isUser = role === 'user';
   
   return (
     <Box
@@ -23,15 +23,11 @@ const MessageDisplay: React.FC<{ message: Message }> = memo(({ message }) => {
         maxWidth="80%"
       >
         <Text color={isUser ? 'blue' : 'white'}>
-          {message.content}
+          {content}
         </Text>
       </Box>
     </Box>
   );
-}, (prevProps, nextProps) => {
-  return prevProps.message.id === nextProps.message.id &&
-         prevProps.message.content === nextProps.message.content &&
-         prevProps.message.role === nextProps.message.role;
 });
 
 MessageDisplay.displayName = 'MessageDisplay';

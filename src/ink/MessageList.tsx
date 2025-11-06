@@ -16,7 +16,7 @@ const MessageList: React.FC<MessageListProps> = memo(({ messages }) => {
   return (
     <Box flexDirection="column" flexGrow={1} paddingX={1} paddingY={1}>
       {messages.map((msg) => (
-        <MessageDisplay key={msg.id} message={msg} />
+        <MessageDisplay key={msg.id} {...msg} />
       ))}
     </Box>
   );

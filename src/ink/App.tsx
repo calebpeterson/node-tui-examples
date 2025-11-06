@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useMemo } from 'react';
-import { Box, useInput, useStdout } from 'ink';
+import React, { useState, useCallback } from 'react';
+import { Box, useInput } from 'ink';
 import MessageList from './MessageList.tsx';
 import InputSection from './InputSection.tsx';
 
@@ -10,7 +10,6 @@ interface Message {
 }
 
 const App: React.FC = () => {
-  const { stdout } = useStdout();
   const [messages, setMessages] = useState<Message[]>([
     { id: '1', content: "Hello! How can I help you today?", role: "agent" },
     { id: '2', content: "I'd like to learn about React", role: "user" },
@@ -102,14 +101,10 @@ const App: React.FC = () => {
     }
   });
 
-  const visibleMessages = useMemo(() => 
-    messages.slice(-Math.max(1, stdout.rows - 8)), 
-    [messages, stdout.rows]
-  );
 
   return (
-    <Box flexDirection="column" height={stdout.rows} width={stdout.columns}>
-      <MessageList messages={visibleMessages} />
+    <Box flexDirection="column">
+      <MessageList messages={messages} />
       <InputSection 
         currentInput={currentInput}
         inputMode={inputMode}
