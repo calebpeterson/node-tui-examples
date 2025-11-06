@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(yarn start)",
+      "Bash(timeout 5 yarn start:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
