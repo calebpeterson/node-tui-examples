@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(yarn start)",
-      "Bash(timeout 5 yarn start:*)"
+      "Bash(timeout 5 yarn start:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
