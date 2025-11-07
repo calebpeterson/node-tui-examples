@@ -1,18 +1,18 @@
-# Creating Interactive Scripts
-
-Use this guide to create new interactive terminal UI scripts in this repository.
+# Creating an Interactive Script
 
 ## Prerequisites
 
 Before creating a new script, ensure the following dependencies are available:
 
 1. **Detect the package manager** in use:
+
    - Check for `yarn.lock` → use `yarn`
    - Check for `package-lock.json` → use `npm`
    - Check for `pnpm-lock.yaml` → use `pnpm`
    - Check for `bun.lockb` → use `bun`
 
 2. **Check package.json** for these dependencies:
+
    - `ink` - React for CLI apps
    - `react` - UI library
    - `tsx` - TypeScript execution
@@ -20,6 +20,7 @@ Before creating a new script, ensure the following dependencies are available:
    - `@types/react` - Type definitions
 
 3. **Install missing dependencies** if needed:
+
    ```bash
    # Using yarn
    yarn add ink react
@@ -134,7 +135,7 @@ interface Message {
       <Text>{msg.content}</Text>
     </Box>
   )}
-</Static>
+</Static>;
 ```
 
 ### Input Handling
