@@ -5,8 +5,11 @@
   "type": "module",
   "license": "MIT",
   "dependencies": {
+    "boxen": "^8.0.1",
     "ink": "^6.4.0",
-    "react": "^19.2.0"
+    "ora": "^9.0.0",
+    "react": "^19.2.0",
+    "zx": "^8.8.5"
   },
   "devDependencies": {
     "@types/ink": "^2.0.3",
@@ -16,9 +19,10 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "counter": "tsx src/counter/index.tsx",
-    "input": "tsx src/input/index.tsx",
-    "chat": "tsx src/chat/index.tsx",
-    "interactive": "tsx src/interactive/index.tsx"
+    "counter": "tsx scripts/counter/index.tsx",
+    "input": "tsx scripts/input/index.tsx",
+    "chat": "tsx scripts/chat/index.tsx",
+    "interactive": "tsx scripts/interactive/index.tsx",
+    "batch": "tsx scripts/batch/index.tsx"
   }
 }

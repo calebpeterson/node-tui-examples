@@ -46,9 +46,27 @@ yarn chat
 
 Multi-component chat interface with message list and input handling.
 
+### Batch
+
+```bash
+yarn batch
+```
+
+Non-interactive script with boxed greeting, spinner, and automatic exit.
+
+## Creating Your Own Scripts
+
+See the prompt guides for creating new scripts:
+
+- **[PROMPT_FOR_INTERACTIVE.md](PROMPT_FOR_INTERACTIVE.md)** - Guide for creating interactive scripts using Ink
+- **[PROMPT_FOR_BATCH.md](PROMPT_FOR_BATCH.md)** - Guide for creating batch scripts using zx, ora, and boxen
+
 ## Tech Stack
 
 - **React** - UI library
 - **Ink** - React for CLI apps
+- **zx** - Shell scripting
+- **ora** - Terminal spinner
+- **boxen** - Terminal boxes
 - **TypeScript** - Type safety
 - **tsx** - TypeScript execution
