@@ -63,10 +63,18 @@ See the prompt guides for creating new scripts:
 
 ## Tech Stack
 
+### Interactive
+
 - **React** - UI library
 - **Ink** - React for CLI apps
+
+### Batch
+
 - **zx** - Shell scripting
 - **ora** - Terminal spinner
 - **boxen** - Terminal boxes
+
+### Common
+
 - **TypeScript** - Type safety
 - **tsx** - TypeScript execution
