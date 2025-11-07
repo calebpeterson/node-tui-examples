@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import { Text } from 'ink';
+import React, { memo } from "react";
+import { Text } from "ink";
 
 interface InputDisplayProps {
   currentInput: string;
@@ -9,14 +9,14 @@ const InputDisplay: React.FC<InputDisplayProps> = memo(({ currentInput }) => {
   return (
     <>
       <Text color="green">&gt; </Text>
-      <Text>{currentInput}</Text>
-      <Text backgroundColor="white"> </Text>
+      <Text>
+        {currentInput}
+        <Text backgroundColor="white"> </Text>
+      </Text>
     </>
   );
-}, (prevProps, nextProps) => {
-  return prevProps.currentInput === nextProps.currentInput;
 });
 
-InputDisplay.displayName = 'InputDisplay';
+InputDisplay.displayName = "InputDisplay";
 
 export default InputDisplay;

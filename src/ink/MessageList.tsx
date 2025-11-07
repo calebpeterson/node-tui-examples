@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import { Box } from "ink";
-import MessageDisplay from "./MessageDisplay.tsx";
+import MessageDisplay from "./MessageDisplay";
+import { Static } from "ink";
 
 interface Message {
   id: string;
@@ -14,11 +14,9 @@ interface MessageListProps {
 
 const MessageList: React.FC<MessageListProps> = memo(({ messages }) => {
   return (
-    <Box flexDirection="column" flexGrow={1} paddingX={1} paddingY={1}>
-      {messages.map((msg) => (
-        <MessageDisplay key={msg.id} {...msg} />
-      ))}
-    </Box>
+    <Static items={messages}>
+      {(message: Message) => <MessageDisplay key={message.id} {...message} />}
+    </Static>
   );
 });
 

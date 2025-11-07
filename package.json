@@ -11,6 +11,7 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
+    "@types/ink": "^2.0.3",
     "@types/node": "^24.10.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
@@ -23,6 +24,8 @@
     "react-curse:start": "ts-node src/react-curse/index.tsx",
     "react-curse:dev": "nodemon --exec ts-node src/react-curse/index.tsx",
     "ink:start": "tsx src/ink/index.tsx",
-    "ink:dev": "nodemon --exec tsx src/ink/index.tsx"
+    "ink:dev": "nodemon --exec tsx src/ink/index.tsx",
+    "ink:counter": "tsx src/ink/examples/counter.tsx",
+    "ink:input": "tsx src/ink/examples/input.tsx"
   }
 }
