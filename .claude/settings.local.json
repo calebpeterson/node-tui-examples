@@ -2,10 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(yarn start)",
-      "Bash(timeout 5 yarn start:*)",
       "Bash(git commit:*)",
       "Bash(yarn add:*)",
-      "Bash(yarn ink:start:*)",
       "Bash(git log:*)"
     ],
     "deny": [],
