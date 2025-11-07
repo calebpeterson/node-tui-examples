@@ -4,7 +4,8 @@
       "Bash(yarn start)",
       "Bash(git commit:*)",
       "Bash(yarn add:*)",
-      "Bash(git log:*)"
+      "Bash(git log:*)",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []
