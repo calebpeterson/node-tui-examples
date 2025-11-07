@@ -18,6 +18,7 @@
   "scripts": {
     "counter": "tsx src/simple/counter.tsx",
     "input": "tsx src/simple/input.tsx",
-    "chat": "tsx src/chat/index.tsx"
+    "chat": "tsx src/chat/index.tsx",
+    "interactive": "tsx src/interactive/index.tsx"
   }
 }
