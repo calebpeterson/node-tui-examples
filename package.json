@@ -22,9 +22,7 @@
   },
   "scripts": {
     "react-curse:start": "ts-node src/react-curse/index.tsx",
-    "react-curse:dev": "nodemon --exec ts-node src/react-curse/index.tsx",
     "ink:start": "tsx src/ink/index.tsx",
-    "ink:dev": "nodemon --exec tsx src/ink/index.tsx",
     "ink:counter": "tsx src/ink/examples/counter.tsx",
     "ink:input": "tsx src/ink/examples/input.tsx"
   }
