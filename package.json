@@ -19,8 +19,8 @@
     "typescript": "^5.9.3"
   },
   "scripts": {
-    "ink:start": "tsx src/ink/index.tsx",
-    "ink:counter": "tsx src/ink/examples/counter.tsx",
-    "ink:input": "tsx src/ink/examples/input.tsx"
+    "chat:start": "tsx src/chat/index.tsx",
+    "chat:counter": "tsx src/chat/examples/counter.tsx",
+    "chat:input": "tsx src/chat/examples/input.tsx"
   }
 }
