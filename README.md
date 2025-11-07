@@ -1,6 +1,6 @@
 # Node TUI Sandbox
 
-A sandbox project for experimenting with React-based Terminal User Interfaces using [Ink](https://github.com/vadimdemedes/ink).
+A sandbox project for experimenting with interactive and batch terminal scripts using modern Node.js tools.
 
 ## Getting Started
 
